@@ -26,10 +26,65 @@ const Footer = () => {
     },
   ];
 
+  const details = [
+    {
+      title: "Who we are",
+    },
+    {
+      title: "Our services",
+    },
+    {
+      title: "Projects",
+    },
+    {
+      title: "Contact",
+    },
+    {
+      title: "Innovation",
+    },
+  ];
+  const useFullLinks = [
+    {
+      title: "About Us",
+    },
+    {
+      title: "Delivery Information",
+    },
+    {
+      title: "Privacy Policy",
+    },
+    {
+      title: "Blogs",
+    },
+    {
+      title: "Innovation",
+    },
+  ];
+
   return (
-    <div className="mt-12 p-12 bg-[#222222] text-white flex justify-center sm:flex-row flex-col md:gap-32 sm:gap-20 gap-10 items-center">
-      <span className="md:text-8xl text-6xl font-bold">MX.</span>
-      <div className="grid grid-cols-2 gap-8">
+    <div className="mt-12 sm:p-12 p-6 bg-[#222222] text-white grid lg:grid-cols-3 md:grid-cols-2  md:gap-16 sm:gap-10 gap-6 ">
+      <span className="md:text-8xl sm:text-6xl text-4xl font-bold">MX.</span>
+      <div className="flex gap-4 sm:mt-0 mt-4 ">
+        <div className="">
+          {useFullLinks.map((item, idx) => {
+            return (
+              <div key={idx} className="flex items-center ">
+                <span>{item.title}</span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="">
+          {details.map((item, idx) => {
+            return (
+              <div key={idx} className="flex items-center ">
+                <span>{item.title}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4 sm:mt-0 mt-4 ">
         {/* socials */}
 
         {socials.map((social, idx) => {

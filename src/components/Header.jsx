@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineMenuFold } from "react-icons/ai";
+import { RxCross1 } from "react-icons/rx";
 const Header = () => {
   const navigationButtons = [
     {
@@ -19,12 +20,12 @@ const Header = () => {
       url: "/testimonials",
     },
   ];
-  const [view, setView] = useState(false);
+  const [view, setView] = useState(true);
   return (
-    <div className="flex justify-between items-center md:px-12 px-5 py-4">
+    <div className="flex justify-between items-center md:px-12 px-4 py-4">
       <div>
         {/* logo */}
-        <span className="text-4xl font-bold">MX.</span>
+        <span className="md:text-4xl text-2xl font-bold">MX.</span>
       </div>
       <div className="sm:flex hidden md:gap-3 gap-2">
         {/* menu buttons */}
@@ -42,9 +43,21 @@ const Header = () => {
           Let's Talk.
         </button>
       </div>
-      {view && (
-        <div className={`transition-all duration-300 ease-in-out flex sm:hidden flex-col justify-center items-center gap-5 absolute top-0 left-0 w-[240px] h-[300px] bg-slate-100`}>
-          <div className="flex flex-col gap-3">
+      {/* responsive */}
+
+      <div className="sm:hidden block">
+        <div
+          onClick={() => setView(true)}
+          className={`fixed duration-200 transition-all ${
+            view ? "invisible" : "visible"
+          }  w-screen h-screen bg-[rgba(0,0,0,0.5)] top-0 left-0 z-20`}
+        ></div>
+        <div
+          className={`w-[300px] z-[9999] transition-all duration-200 fixed  ${
+            view ? "-left-[300px]" : "left-0"
+          } top-0 flex justify-center flex-col gap-5 items-center bg-white h-screen py-6 px-8`}
+        >
+          <div className="flex flex-col gap-3 text-center">
             {/* menu buttons */}
             {navigationButtons.map((menuItem, idx) => {
               return (
@@ -56,13 +69,15 @@ const Header = () => {
           </div>
           <div>
             {/* CTA */}
-            <button className="flex bg-[#f9db4b] font-semibold py-2 px-8 rounded-full">
-              Let's Talk.
-            </button>
+            <button className="flex bg-[#f9db4b] font-semibold py-2 px-8 rounded-full">Let's Talk.</button>
           </div>
+          <button className="absolute top-1 right-1 bg-[#f9db4b] p-1 text-xl" onClick={() => setView(!view)}>
+            <RxCross1 />
+          </button>
         </div>
-      )}
-      <span className="sm:hidden block text-xl p-1 bg-yellow-400 text-black" onClick={() => setView(!view)}>
+      </div>
+
+      <span className="sm:hidden block text-xl p-1 bg-[#f9db4b] " onClick={() => setView(!view)}>
         <AiOutlineMenuFold />
       </span>
     </div>
